@@ -6,12 +6,14 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <div class="homeElements">
-    <h1>Rock, Paper, Scissors!</h1>
-    <input id="rounds" placeholder="Odd number">
-    <button onclick="getRounds();">I'm in!</button>
+    <body onload="showRound();">
+    <h1>Your turn!</h1>
+    <div id="stats">Starting...</div>
+    <button onclick="cpuTurn('r');">Rock</button>
+    <button onclick="cpuTurn('p');">Paper</button>
+    <button onclick="cpuTurn('s');">Scissors</button>
   </div>
   </head>
-  <body>
     <script src="script.js"></script>
   </body>
 </html>

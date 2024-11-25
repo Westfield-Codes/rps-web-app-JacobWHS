@@ -1,3 +1,24 @@
 body {
-  background-color:antiquewhite;
+  background: linear-gradient(270deg, #ff4242, #ffb842, #f2ff42);
+  background-size: 600% 600%;
+
+  animation: gradSlide 2s ease infinite;
+}
+
+@keyframes gradSlide {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.homeElements{
+  text-align: center;
+  padding: 350px 0;
+  /* width: 40%; */
+  /* padding: 10px; */
+}
+
+body {
+  color: white;
+  font-family: 'Poppins';  
 }
