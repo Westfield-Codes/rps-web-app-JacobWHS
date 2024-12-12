@@ -1,3 +1,4 @@
+/* Animated Background */
 body {
   background: linear-gradient(270deg, #ff4242, #ffb842, #f2ff42);
   background-size: 600% 600%;
@@ -11,7 +12,9 @@ body {
   100%{background-position:0% 50%}
 }
 
-.homeElements{
+/* Centering */
+
+.homeElements {
   text-align: center;
   padding: 350px 0;
   /* width: 40%; */
@@ -21,4 +24,23 @@ body {
 body {
   color: white;
   font-family: 'Poppins';  
+  position: relative;
+}
+
+#scoreBox {
+  position: absolute; 
+  right: 10px; 
+  top: 10px; 
+  border:1px solid black;
+  background: white;
+  padding: 10px;
+  color: black;
+}
+
+.over {
+  font-size: 24px;
+  margin: auto;
+  position: static;
+  width: 10em;
+  text-align: center;
 }
