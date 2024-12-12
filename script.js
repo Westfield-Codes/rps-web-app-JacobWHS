@@ -39,6 +39,8 @@ function setRounds(rounds){
 function endGame(){
     if (score[0] > score[1]) localStorage.setItem("winner", "You");
     else localStorage.setItem("winner", "I");
+    let winner = localStorage.getItem("winner");
+    let message = winner + " won";
 }
 
 /* Function showRound

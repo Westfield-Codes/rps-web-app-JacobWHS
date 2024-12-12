@@ -22,8 +22,8 @@
 1. **[✓]** Now, in gameover.html, add the scorebox div above the play again button
 1. **[✓]** Give scoreBox the class "over" 
 1. **[✓]** Style over with font 24pt, margin auto, position static (important), width 10 em, text align center.
-1. Get the winner variable from local storage
-1. Create a variable called message, and begin it winner + won, 
+1. **[✓]** Get the winner variable from local storage
+1. **[✓]** Create a variable called message, and begin it winner + won, 
 1. Add the score to message, but join the values with " to " instead of a comma. 
 1. Display the message in scoreBox. 
 1. If this is working, save the branch now. 
