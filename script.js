@@ -20,11 +20,11 @@ function setRounds(rounds){
     if (rounds % 2 == 0 || isNaN(rounds)) {
         //alert("must be odd");
         document.getElementById("rounds").value = "";
-        if (rounds % 2 == 0){
-        document.getElementById("rounds").placeholder = "Your input must be odd.";
+        if (isNaN(rounds)){
+        document.getElementById("rounds").placeholder = "Must be numerical.";
         }
         else{
-            document.getElementById("rounds").placeholder = "Your input must be a number.";
+            document.getElementById("rounds").placeholder = "Your input must be odd.";
         }
     }
     else {
@@ -36,11 +36,26 @@ function setRounds(rounds){
     }
 }
 
+const enter = document.getElementById("rounds");
+enter.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        setRounds(document.getElementById("rounds").value);
+    }
+});
+
+/* Function endGame
+ * Called when the game ends, shows who won.
+ * @param = none
+ * @localStorage => round, rounds
+ * @return = none
+ */
 function endGame(){
+    let score = JSON.parse(localStorage.getItem("score"));
     if (score[0] > score[1]) localStorage.setItem("winner", "You");
     else localStorage.setItem("winner", "I");
     let winner = localStorage.getItem("winner");
-    let message = winner + " won";
+    let message = winner + " won" + ", " + score.join(" to ") + ".";
+    scoreBox.innerHTML = message;
 }
 
 /* Function showRound
@@ -52,15 +67,16 @@ function endGame(){
 function showRound(){
     let round = localStorage.getItem("round");
     let rounds = localStorage.getItem("rounds");
-    let score = JSON.parse(localStorage.getItem("score"));
     if (round > rounds) {
         window.location.href = "gameover.html";
+        let message = "The game has ended!";
     }
+    else message = "Round " + round + " of " + rounds + ".";
+    let score = JSON.parse(localStorage.getItem("score"));
     let statsBox = document.getElementById("statsBox");
-    let message = "Round " + round + " of " + rounds;
     statsBox.innerHTML = message;
-    let scoreBox = document.getElementById("scoreBox");
-    scoreBox.innerHTML = "Score: " + score.toString();
+    scoreBox.innerHTML = "Score: " + score.join(", ");
+    
 }
 
 /* Function cpuTurn
@@ -91,6 +107,7 @@ function findWinner(u, c){
     else {
         let winner = " ";
         let winArray = [["r","p","I"],["r","s","You"],["p","s","I"],["p","r","You"],["s","r","I"],["s","p","You"]];
+        let movesFormatted = ["Rock", "Paper", "Scissor"];
         for (let i = 0; i< winArray.length; i++){
             if (winArray[i][0] == u && winArray[i][1]==c){
                 winner = winArray[i][2];
@@ -98,10 +115,12 @@ function findWinner(u, c){
             }
         }
         // alert("You choose " + u + " and I choose " + c + " " + winner + " win!");
-        document.getElementById("result").innerHTML = "You choose " + u + " and I choose " + c + " " + winner + " win!";
+        document.getElementById("result").innerHTML = "You choose " + u + " and I choose " + c + ". " + winner + " win this round!";
         let round = localStorage.getItem("round");
         const players = ["You", "I"];
-        round++;
+        if (localStorage.getItem("rounds") >= round) round++;
+        else localStorage.setItem("itsova", 1);
+        // round++;
         let win = players.indexOf(winner);
         let score = JSON.parse(localStorage.getItem("score"));
         score[win]++;
